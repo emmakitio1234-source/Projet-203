@@ -1,0 +1,42 @@
+Projet de ICT 203 2025/2026 
+Vous devez réaliser une application de gestion d’un emploi du temps dans un établissement 
+universitaire. 
+Pour cela l’application doit être capable d’afficher l’emploi du temps d’une classe donnée, dans une 
+filière donnée, pour un département donné, ce en fonction des paramètres souhaités par 
+l’utilisateur. Vous devez donc permettre à l’utilisateur d’avoir des vues lui permettant d’afficher cet 
+emploi du temps en fonction du temps (semestre, semaine, jour), par groupes d’étudiants, par 
+espaces ou par enseignants. 
+L’application doit fournir une interface aux enseignants, qui leur permettra de soumettre leurs 
+désidératas quant aux choix des plages horaires au cours d’une semaine. Leur offrira la possibilité de 
+modifier leur programmation, cette possibilité leur sera accordée pendant une période de temps 
+définie. Cette catégorie d’utilisateur aura la possibilité de consulter sa ou ses plages horaires une fois 
+l’emploi du temps disponible. 
+Un utilisateur particulier (administrateur), aura la possibilité de modifier ou supprimer le choix des 
+plages horaires ou des jours choisis par un enseignant, lui offrant ainsi la possibilité de faire les 
+arbitrages nécessaires. Mais toutes ces modifications effectuées par l’enseignant ou par 
+l’administrateur pourront être visualisées si besoin est. 
+Les contraintes liées à l’affichage de l’emploi de temps final devront intégrer le fait que dans un 
+même cadran d’affichage, se retrouve :  la plage horaire qui est réservée à l’UE, le code de l’UE, le 
+nom de l’enseignant qui dispense l’UE, la salle où sera dispensée l’UE et la date de passage de l‘UE. 
+Vous prendrez en compte le fait qu’il existe des salles prédéfinies, avec possibilité d’en définir de 
+nouvelles salles ayant une capacité fixe, mais également que chaque classe donnée possède un 
+effectif défini pour un semestre donné, d’une année académique donnée. Toutes ces données seront 
+des paramètres renseignés lors du paramétrage exigible de l’application, effectué par 
+l’administrateur du système. 
+Vous veillerez donc à ce qu’une programmation optimale soit faite, c’est à-dire qui tienne compte de 
+l’effectif de la classe, pour proposer les salles encore disponibles, pouvant accueillir les étudiants 
+d’une classe donnée.  
+Vous vous assurerez également qu’une fois l’emploi du temps d’une classe donnée prêt (plage 
+horaire et UE du semestre entièrement programmées) un message d’alerte est affiché pour signaler 
+cet état de fait à l’administrateur. 
+TAF : 
+1. Fournir un cahier de conception et d’implémentation de l’application, où vous spécifierez les 
+fonctionnalités telles que prescrites par le cahier de charge en respectant les contraintes 
+indiquées. Vous y indiquerez les consignes d’installation et de lancement de l’application. 
+2. Fournir un exécutable avec code source dudit projet. 
+3. A titre de démonstration et de présentation, vous définirez l’emploi du temps de la classe 
+ICT-L2, qui sera un exemple pour montrer comment votre application fonctionne et respecte 
+les consignes et contraintes ci-dessus indiquée, pour le compte du semestre1 de l’année 
+académique 2025/2026 en considerant deux plages horaires de votre choix. 
+4. Le travail se fera par groupe de 6 étudiants et sera remis dans un délai de 14 jours dès 
+publication du présent projet.

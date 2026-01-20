@@ -1,0 +1,396 @@
+timetable-management-system/
+│
+├── 📂 backend/                          # API Node.js + Express
+│   ├── 📂 src/
+│   │   ├── 📂 config/                   # Configuration
+│   │   │   ├── database.js              # Config MySQL/Sequelize
+│   │   │   ├── redis.js                 # Config Redis Cache
+│   │   │   ├── jwt.js                   # Config JWT
+│   │   │   ├── email.js                 # Config NodeMailer
+│   │   │   └── constants.js             # Constantes globales
+│   │   │
+│   │   ├── 📂 models/                   # Modèles Sequelize
+│   │   │   ├── index.js                 # Export tous les modèles
+│   │   │   ├── User.js
+│   │   │   ├── Department.js
+│   │   │   ├── Filiere.js
+│   │   │   ├── Class.js
+│   │   │   ├── AcademicYear.js
+│   │   │   ├── Semester.js
+│   │   │   ├── UE.js
+│   │   │   ├── ClassUE.js
+│   │   │   ├── Room.js
+│   │   │   ├── TimeSlot.js
+│   │   │   ├── TeacherPreference.js
+│   │   │   ├── TimetableEntry.js
+│   │   │   ├── Notification.js
+│   │   │   ├── Conflict.js
+│   │   │   ├── Message.js
+│   │   │   └── SystemSettings.js
+│   │   │
+│   │   ├── 📂 controllers/              # Contrôleurs API
+│   │   │   ├── authController.js        # Login, Register, JWT
+│   │   │   ├── userController.js        # CRUD Users
+│   │   │   ├── departmentController.js
+│   │   │   ├── filiereController.js
+│   │   │   ├── classController.js
+│   │   │   ├── ueController.js
+│   │   │   ├── roomController.js
+│   │   │   ├── timetableController.js   # Gestion emploi du temps
+│   │   │   ├── preferenceController.js  # Préférences enseignants
+│   │   │   ├── conflictController.js    # Détection conflits
+│   │   │   ├── notificationController.js
+│   │   │   ├── messageController.js     # Messagerie
+│   │   │   ├── reportController.js      # Rapports & exports
+│   │   │   ├── dashboardController.js   # Statistiques
+│   │   │   └── settingsController.js
+│   │   │
+│   │   ├── 📂 routes/                   # Routes API
+│   │   │   ├── index.js                 # Route principale
+│   │   │   ├── authRoutes.js
+│   │   │   ├── userRoutes.js
+│   │   │   ├── departmentRoutes.js
+│   │   │   ├── filiereRoutes.js
+│   │   │   ├── classRoutes.js
+│   │   │   ├── ueRoutes.js
+│   │   │   ├── roomRoutes.js
+│   │   │   ├── timetableRoutes.js
+│   │   │   ├── preferenceRoutes.js
+│   │   │   ├── conflictRoutes.js
+│   │   │   ├── notificationRoutes.js
+│   │   │   ├── messageRoutes.js
+│   │   │   ├── reportRoutes.js
+│   │   │   ├── dashboardRoutes.js
+│   │   │   └── settingsRoutes.js
+│   │   │
+│   │   ├── 📂 middleware/               # Middlewares
+│   │   │   ├── auth.js                  # Vérification JWT
+│   │   │   ├── roleCheck.js             # Vérification rôles (RBAC)
+│   │   │   ├── validateRequest.js       # Validation Joi/Yup
+│   │   │   ├── errorHandler.js          # Gestion erreurs globale
+│   │   │   ├── rateLimiter.js           # Limitation requêtes
+│   │   │   ├── logger.js                # Logging requêtes
+│   │   │   ├── cache.js                 # Cache Redis
+│   │   │   └── uploadFile.js            # Upload fichiers (Multer)
+│   │   │
+│   │   ├── 📂 services/                 # Logique métier
+│   │   │   ├── authService.js           # Logique authentification
+│   │   │   ├── timetableService.js      # Logique emploi du temps
+│   │   │   ├── optimizationService.js   # Algorithme optimisation
+│   │   │   ├── conflictService.js       # Détection conflits
+│   │   │   ├── notificationService.js   # Envoi notifications
+│   │   │   ├── emailService.js          # Envoi emails
+│   │   │   ├── pdfService.js            # Génération PDF (PDFKit)
+│   │   │   ├── excelService.js          # Export Excel (ExcelJS)
+│   │   │   ├── cacheService.js          # Gestion cache Redis
+│   │   │   └── analyticsService.js      # Calculs statistiques
+│   │   │
+│   │   ├── 📂 utils/                    # Utilitaires
+│   │   │   ├── validators.js            # Schémas validation Joi
+│   │   │   ├── helpers.js               # Fonctions helper
+│   │   │   ├── dateUtils.js             # Manipulation dates
+│   │   │   ├── encryptionUtils.js       # Chiffrement
+│   │   │   ├── responseFormatter.js     # Format réponses API
+│   │   │   └── logger.js                # Winston logger
+│   │   │
+│   │   ├── 📂 websocket/                # WebSocket (Socket.io)
+│   │   │   ├── socketHandler.js         # Gestion WebSocket
+│   │   │   ├── notificationSocket.js    # Notifications temps réel
+│   │   │   └── chatSocket.js            # Messagerie temps réel
+│   │   │
+│   │   ├── 📂 jobs/                     # Tâches planifiées (node-cron)
+│   │   │   ├── reminderJob.js           # Rappels automatiques
+│   │   │   ├── backupJob.js             # Backup automatique DB
+│   │   │   ├── cleanupJob.js            # Nettoyage logs anciens
+│   │   │   └── reportJob.js             # Rapports automatiques
+│   │   │
+│   │   └── server.js                    # Point d'entrée serveur
+│   │
+│   ├── 📂 tests/                        # Tests
+│   │   ├── 📂 unit/                     # Tests unitaires
+│   │   ├── 📂 integration/              # Tests intégration
+│   │   └── setup.js                     # Configuration tests
+│   │
+│   ├── 📂 uploads/                      # Fichiers uploadés
+│   ├── 📂 logs/                         # Logs application
+│   ├── 📂 exports/                      # PDF/Excel générés
+│   ├── .env                             # Variables environnement
+│   ├── .env.example                     # Template .env
+│   ├── .gitignore
+│   ├── package.json
+│   ├── package-lock.json
+│   └── README.md
+│
+├── frontend/
+│
+├── 📂 public/
+│   ├── index.html
+│   ├── favicon.svg                    # SVG moderne
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── 📂 images/
+│       ├── logo.svg
+│       └── og-image.png               # Open Graph
+│
+├── 📂 src/
+│   │
+│   ├── 📂 app/                        # Configuration app
+│   │   ├── App.tsx
+│   │   ├── routes.tsx                 # React Router v6
+│   │   └── providers.tsx              # Providers wrapper
+│   │
+│   ├── 📂 components/                 # Composants UI
+│   │   │
+│   │   ├── 📂 ui/                     # Composants de base (shadcn/ui style)
+│   │   │   ├── button.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── select.tsx
+│   │   │   ├── dialog.tsx
+│   │   │   ├── dropdown-menu.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── badge.tsx
+│   │   │   ├── avatar.tsx
+│   │   │   ├── skeleton.tsx
+│   │   │   ├── toast.tsx
+│   │   │   ├── tooltip.tsx
+│   │   │   ├── tabs.tsx
+│   │   │   ├── calendar.tsx
+│   │   │   ├── popover.tsx
+│   │   │   ├── command.tsx            # Command palette
+│   │   │   ├── sheet.tsx              # Slide-over
+│   │   │   ├── separator.tsx
+│   │   │   ├── switch.tsx
+│   │   │   ├── slider.tsx
+│   │   │   ├── progress.tsx
+│   │   │   ├── alert.tsx
+│   │   │   └── sonner.tsx             # Toast moderne
+│   │   │
+│   │   ├── 📂 layout/                 # Layout composants
+│   │   │   ├── AppShell.tsx           # Shell principal
+│   │   │   ├── Header.tsx
+│   │   │   ├── Sidebar.tsx
+│   │   │   ├── MobileNav.tsx
+│   │   │   ├── Breadcrumbs.tsx
+│   │   │   └── Footer.tsx
+│   │   │
+│   │   ├── 📂 features/               # Composants métier
+│   │   │   │
+│   │   │   ├── 📂 auth/
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── RegisterForm.tsx
+│   │   │   │   ├── ForgotPassword.tsx
+│   │   │   │   ├── OTPInput.tsx       # 2FA
+│   │   │   │   └── SocialLogin.tsx
+│   │   │   │
+│   │   │   ├── 📂 timetable/
+│   │   │   │   ├── TimetableView.tsx
+│   │   │   │   ├── TimetableGrid.tsx
+│   │   │   │   ├── TimetableFilters.tsx
+│   │   │   │   ├── EventCard.tsx
+│   │   │   │   ├── EventDialog.tsx
+│   │   │   │   ├── QuickAdd.tsx       # Ajout rapide
+│   │   │   │   ├── DragDrop.tsx       # Drag & Drop
+│   │   │   │   └── ConflictIndicator.tsx
+│   │   │   │
+│   │   │   ├── 📂 dashboard/
+│   │   │   │   ├── StatsCards.tsx
+│   │   │   │   ├── Charts.tsx
+│   │   │   │   ├── ActivityFeed.tsx
+│   │   │   │   ├── QuickActions.tsx
+│   │   │   │   └── UpcomingEvents.tsx
+│   │   │   │
+│   │   │   ├── 📂 preferences/
+│   │   │   │   ├── PreferenceCalendar.tsx
+│   │   │   │   ├── TimeSlotSelector.tsx
+│   │   │   │   └── PreferenceList.tsx
+│   │   │   │
+│   │   │   ├── 📂 rooms/
+│   │   │   │   ├── RoomGrid.tsx
+│   │   │   │   ├── RoomCard.tsx
+│   │   │   │   ├── RoomAvailability.tsx
+│   │   │   │   └── RoomFilters.tsx
+│   │   │   │
+│   │   │   ├── 📂 notifications/
+│   │   │   │   ├── NotificationCenter.tsx
+│   │   │   │   ├── NotificationList.tsx
+│   │   │   │   └── NotificationItem.tsx
+│   │   │   │
+│   │   │   └── 📂 settings/
+│   │   │       ├── ProfileSettings.tsx
+│   │   │       ├── ThemeToggle.tsx
+│   │   │       ├── LanguageSelector.tsx
+│   │   │       └── NotificationPreferences.tsx
+│   │   │
+│   │   └── 📂 shared/                 # Composants partagés
+│   │       ├── DataTable.tsx          # Table avec tri/filtre
+│   │       ├── EmptyState.tsx
+│   │       ├── ErrorBoundary.tsx
+│   │       ├── LoadingState.tsx
+│   │       ├── SearchBar.tsx
+│   │       ├── DatePicker.tsx
+│   │       ├── TimePicker.tsx
+│   │       ├── FileUpload.tsx
+│   │       ├── ColorPicker.tsx
+│   │       └── ConfirmDialog.tsx
+│   │
+│   ├── 📂 features/                   # Modules métier (Feature-based)
+│   │   ├── 📂 auth/
+│   │   │   ├── api/
+│   │   │   │   └── authApi.ts
+│   │   │   ├── hooks/
+│   │   │   │   ├── useAuth.ts
+│   │   │   │   ├── useLogin.ts
+│   │   │   │   └── useLogout.ts
+│   │   │   ├── store/
+│   │   │   │   └── authStore.ts       # Zustand store
+│   │   │   ├── types/
+│   │   │   │   └── auth.types.ts
+│   │   │   └── utils/
+│   │   │       └── authUtils.ts
+│   │   │
+│   │   ├── 📂 timetable/
+│   │   │   ├── api/
+│   │   │   │   └── timetableApi.ts
+│   │   │   ├── hooks/
+│   │   │   │   ├── useTimetable.ts
+│   │   │   │   ├── useEvents.ts
+│   │   │   │   └── useConflicts.ts
+│   │   │   ├── store/
+│   │   │   │   └── timetableStore.ts
+│   │   │   ├── types/
+│   │   │   │   └── timetable.types.ts
+│   │   │   └── utils/
+│   │   │       ├── conflictDetection.ts
+│   │   │       └── optimization.ts
+│   │   │
+│   │   ├── 📂 rooms/
+│   │   │   ├── api/
+│   │   │   ├── hooks/
+│   │   │   ├── store/
+│   │   │   └── types/
+│   │   │
+│   │   └── 📂 preferences/
+│   │       ├── api/
+│   │       ├── hooks/
+│   │       ├── store/
+│   │       └── types/
+│   │
+│   ├── 📂 pages/                      # Pages (React Router)
+│   │   ├── index.tsx
+│   │   ├── LoginPage.tsx
+│   │   ├── DashboardPage.tsx
+│   │   ├── TimetablePage.tsx
+│   │   ├── PreferencesPage.tsx
+│   │   ├── RoomsPage.tsx
+│   │   ├── ClassesPage.tsx
+│   │   ├── SettingsPage.tsx
+│   │   └── NotFoundPage.tsx
+│   │
+│   ├── 📂 lib/                        # Bibliothèques & config
+│   │   ├── api/
+│   │   │   ├── client.ts              # Axios instance
+│   │   │   ├── interceptors.ts
+│   │   │   └── queryClient.ts         # React Query
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── cn.ts                  # className utility
+│   │   │   ├── date.ts
+│   │   │   ├── format.ts
+│   │   │   ├── validation.ts
+│   │   │   └── helpers.ts
+│   │   │
+│   │   └── constants/
+│   │       ├── routes.ts
+│   │       ├── colors.ts
+│   │       ├── permissions.ts
+│   │       └── config.ts
+│   │
+│   ├── 📂 hooks/                      # Custom hooks globaux
+│   │   ├── useDebounce.ts
+│   │   ├── useLocalStorage.ts
+│   │   ├── useMediaQuery.ts
+│   │   ├── useKeyPress.ts
+│   │   ├── useIntersectionObserver.ts
+│   │   ├── useClickOutside.ts
+│   │   ├── useWebSocket.ts
+│   │   └── useTheme.ts
+│   │
+│   ├── 📂 store/                      # State management (Zustand)
+│   │   ├── index.ts
+│   │   ├── authStore.ts
+│   │   ├── uiStore.ts
+│   │   ├── notificationStore.ts
+│   │   └── themeStore.ts
+│   │
+│   ├── 📂 styles/                     # Styles
+│   │   ├── globals.css                # Tailwind directives
+│   │   ├── themes/
+│   │   │   ├── light.css
+│   │   │   ├── dark.css
+│   │   │   └── variables.css
+│   │   └── animations.css
+│   │
+│   ├── 📂 types/                      # Types TypeScript globaux
+│   │   ├── index.ts
+│   │   ├── api.types.ts
+│   │   ├── models.types.ts
+│   │   └── env.d.ts
+│   │
+│   ├── 📂 locales/                    # i18n
+│   │   ├── i18n.ts
+│   │   ├── fr/
+│   │   │   ├── common.json
+│   │   │   ├── auth.json
+│   │   │   └── timetable.json
+│   │   └── en/
+│   │       ├── common.json
+│   │       ├── auth.json
+│   │       └── timetable.json
+│   │
+│   ├── main.tsx                       # Entry point
+│   └── vite-env.d.ts
+│
+├── 📄 Configuration Files
+├── .env.development
+├── .env.production
+├── .env.example
+├── .eslintrc.cjs                      # ESLint config
+├── .prettierrc                        # Prettier config
+├── tsconfig.json                      # TypeScript config
+├── tsconfig.node.json
+├── vite.config.ts                     # Vite config
+├── tailwind.config.js                 # Tailwind config
+├── postcss.config.js
+├── vitest.config.ts                   # Vitest (tests)
+├── components.json                    # shadcn/ui config
+├── package.json
+└── README.md
+|
+├── 📂 database/                         # Scripts base de données
+│   ├── schema.sql                       # Schéma complet MySQL
+│   ├── seeds.sql                        # Données d'exemple
+│   ├── sample_data.sql                  # Données ICT-L2 demo
+│   ├── migrations/                      # Migrations Sequelize
+│   └── backup/                          # Backups DB
+│
+├── 📂 docs/                             # Documentation
+│   ├── ARCHITECTURE.md                  # Architecture projet
+│   ├── API_DOCUMENTATION.md             # Doc API
+│   ├── DATABASE_SCHEMA.md               # Schéma DB détaillé
+│   ├── USER_MANUAL.md                   # Manuel utilisateur
+│   ├── INSTALLATION.md                  # Guide installation
+│   ├── DEPLOYMENT.md                    # Guide déploiement
+│   ├── TESTING.md                       # Guide tests
+│   └── 📂 images/                       # Screenshots, diagrammes
+│
+├── 📂 scripts/                          # Scripts utilitaires
+│   ├── setup.js                         # Setup initial projet
+│   ├── seed-database.js                 # Remplir DB avec données
+│   ├── create-admin.js                  # Créer admin initial
+│   ├── backup.js                        # Script backup DB
+│   └── deploy.js                        # Script déploiement
+│
+├── .gitignore                           # Git ignore global
+├── README.md                            # Documentation principale
+├── LICENSE                              # Licence projet
+└── docker-compose.yml                   # Docker (optionnel)
